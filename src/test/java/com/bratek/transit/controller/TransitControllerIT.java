@@ -20,7 +20,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @WebAppConfiguration
 public class TransitControllerIT {
 
-    private static final String TransitJson = "{\n" +
+    private static final String TRANSIT_JSON = "{\n" +
             "  \"sourceAddress\" : \"ul. Zakręt 8, Poznań\",\n" +
             "  \"destinationAddress\": \"Złota 44, Warszawa\",\n" +
             "  \"price\": 450,\n" +
@@ -40,7 +40,7 @@ public class TransitControllerIT {
     public void shouldReturnStatusCreatedWhenBodyIsValid() throws Exception {
         mockMvc.perform(post("/api/transit")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(TransitJson))
+                .content(TRANSIT_JSON))
                 .andExpect(status().isCreated());
     }
 }
