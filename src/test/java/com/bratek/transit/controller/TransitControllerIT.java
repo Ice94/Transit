@@ -1,5 +1,7 @@
 package com.bratek.transit.controller;
 
+import com.bratek.transit.model.Transit;
+import com.bratek.transit.service.TransitService;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -12,7 +14,12 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
+import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.hasSize;
+import static org.hamcrest.Matchers.is;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -29,11 +36,22 @@ public class TransitControllerIT {
     @Autowired
     private WebApplicationContext context;
 
+    @Autowired
+    private TransitService transitService;
+
     private MockMvc mockMvc;
 
     @Before
     public void setUp() {
         mockMvc = MockMvcBuilders.webAppContextSetup(context).build();
+        transitService.save(new Transit(null, "Krk", "Wawa", 20.f, null));
+    }
+
+    @Test
+    public void shouldReturnAllTransits() throws Exception {
+        mockMvc.perform(get("/api/transit"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("totalElements", equalTo(1)));
     }
 
     @Test

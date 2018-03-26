@@ -29,7 +29,6 @@ public class TransitController {
     }
 
     @GetMapping(value = "/transit")
-    @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<Page<Transit>> getAllTransits (Pageable pageable) {
         return new ResponseEntity<>(transitService.getAllTransits(pageable), HttpStatus.OK);
     }
