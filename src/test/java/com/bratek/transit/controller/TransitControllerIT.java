@@ -15,8 +15,6 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
 import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.Matchers.hasSize;
-import static org.hamcrest.Matchers.is;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -51,7 +49,8 @@ public class TransitControllerIT {
     public void shouldReturnAllTransits() throws Exception {
         mockMvc.perform(get("/api/transit"))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("totalElements", equalTo(1)));
+                .andExpect(jsonPath("totalElements", equalTo(1)))
+                .andExpect(jsonPath("$.content[0].sourceAddress", equalTo("Krk")));
     }
 
     @Test
