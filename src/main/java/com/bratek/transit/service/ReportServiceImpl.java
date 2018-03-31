@@ -15,7 +15,8 @@ public class ReportServiceImpl implements ReportService{
     @Async
     @Override
     public CompletableFuture<List<DailyReport>> findReports(Date startDate, Date endDate) throws InterruptedException {
-        Thread.sleep(10000L);
+        // init long time operation
+        Thread.sleep(1000L);
         return CompletableFuture.completedFuture(Collections.singletonList(new DailyReport(100L, 100.70)));
     }
 }

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.websocket.server.PathParam;
 import java.util.Date;
 import java.util.List;
+import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 
 @RestController
@@ -25,9 +26,9 @@ public class ReportController {
     }
 
     @GetMapping(value = "/daily")
-    public ResponseEntity<List<DailyReport>> getDailyReports(
+    public Callable<ResponseEntity<List<DailyReport>>> getDailyReports(
             @PathParam("startDate") @DateTimeFormat(pattern = "YYYY-MM-DD") Date startDate,
             @PathParam("endDate") @DateTimeFormat(pattern = "YYYY-MM-DD") Date endDate) throws InterruptedException, ExecutionException {
-        return new ResponseEntity<>(reportService.findReports(startDate, endDate).get(), HttpStatus.OK);
+        return () -> new ResponseEntity<>(reportService.findReports(startDate, endDate).get(), HttpStatus.OK);
     }
 }

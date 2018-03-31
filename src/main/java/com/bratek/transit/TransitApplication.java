@@ -10,9 +10,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @SpringBootApplication
 @EnableSwagger2
-@EnableAsync
 public class TransitApplication {
-
 	public static void main(String[] args) {
 		SpringApplication.run(TransitApplication.class, args);
 	}
