@@ -1,6 +1,5 @@
 package com.bratek.transit.controller;
 
-import com.bratek.transit.service.ReportService;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
