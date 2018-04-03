@@ -28,7 +28,7 @@ public class ReportController {
     @GetMapping(value = "/daily")
     public Callable<ResponseEntity<List<DailyReport>>> getDailyReports(
             @PathParam("startDate") @DateTimeFormat(pattern = "YYYY-MM-DD") Date startDate,
-            @PathParam("endDate") @DateTimeFormat(pattern = "YYYY-MM-DD") Date endDate) throws InterruptedException, ExecutionException {
+            @PathParam("endDate") @DateTimeFormat(pattern = "YYYY-MM-DD") Date endDate) {
         return () -> new ResponseEntity<>(reportService.findReports(startDate, endDate).get(), HttpStatus.OK);
     }
 }
