@@ -13,7 +13,6 @@ import javax.websocket.server.PathParam;
 import java.util.Date;
 import java.util.List;
 import java.util.concurrent.Callable;
-import java.util.concurrent.ExecutionException;
 
 @RestController
 @RequestMapping(value = "/api/reports")

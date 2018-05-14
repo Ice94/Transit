@@ -24,6 +24,4 @@ public class Transit {
     private Float price;
     private LocalDate date;
 
-
-
 }
